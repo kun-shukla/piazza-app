@@ -158,7 +158,7 @@ router.patch("/:postId", verifyToken, async (req, res) => {
   }
   // Extract interaction data from the request body
   const interaction = {
-    user: { name: req.body.user_name },
+    user: { name: req.user.username },
     action_type: req.body.action_type,
     action_value: req.body.action_value || null, // Only applicable for comments
   };
