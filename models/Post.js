@@ -42,10 +42,6 @@ const PostSchema = mongoose.Schema({
       return new Date(Date.now() + 60 * 1000);
     },
   },
-  // time_left_to_expire: {
-  //   type: String, // Time remaining for the post to expire
-  //   // required: true,
-  // },
   post_status: {
     type: String,
     enum: ["Live", "Expired"], // Status of the post
@@ -64,7 +60,6 @@ const PostSchema = mongoose.Schema({
   },
   post_interactions: {
     type: [InteractionSchema], // Array of interactions
-    // default: []
   },
 });
 

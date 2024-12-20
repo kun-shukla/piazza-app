@@ -7,12 +7,12 @@ require("dotenv/config");
 
 const bodyParser = require("body-parser");
 const postsRoute = require("./routes/posts");
-// const userRoute = require("./routes/users");
+const authRoute = require("./routes/auth");
 
 // Middleware
 app.use(bodyParser.json());
-app.use("/posts", postsRoute);
-// app.use("/users", userRoute);
+app.use("/api/posts", postsRoute);
+app.use("/api/user", authRoute);
 
 //Create a route
 app.get("/", (req, res) => {
