@@ -39,7 +39,7 @@ const PostSchema = mongoose.Schema({
     type: Date, // When the post stops accepting actions
     default: function () {
       // Add 3 days to the current timestamp
-      return new Date(Date.now() + 60 * 1000);
+      return new Date(Date.now() + 10 * 60 * 1000);
     },
   },
   post_status: {
