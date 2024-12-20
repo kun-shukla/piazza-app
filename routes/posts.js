@@ -150,6 +150,14 @@ router.patch("/:postId", verifyToken, async (req, res) => {
 
   await updatePostStatus(post);
 
+  // Prevent user from liking their own post
+  if (
+    post.post_owner.name === req.user.username &&
+    req.body.action_type === "like"
+  ) {
+    return res.send({ message: "You cannot like your own post." });
+  }
+
   // Check if the post is expired.
   if (post.post_status === "Expired") {
     return res.send({
