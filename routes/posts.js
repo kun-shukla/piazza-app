@@ -44,10 +44,11 @@ router.get("/", verifyToken, async (req, res) => {
 router.get("/:postId", verifyToken, async (req, res) => {
   try {
     const postById = await Post.findById(req.params.postId);
-    res.send(postById);
 
     // Update post status based on expiration time
     await updatePostStatus(postById);
+
+    res.send(postById);
   } catch (err) {
     res.send({ message: err });
   }
@@ -77,7 +78,6 @@ router.get("/topic/:topic", async (req, res) => {
 router.get("/trending/:topic", async (req, res) => {
   try {
     const topic = req.params.topic;
-
     // Validate topic
     if (!["Politics", "Health", "Sport", "Tech"].includes(topic)) {
       return res.status(400).send({ message: "Invalid topic provided." });
@@ -148,6 +148,7 @@ router.patch("/:postId", verifyToken, async (req, res) => {
   // Fetch the post by ID
   const post = await Post.findById(req.params.postId);
 
+  // Update post status based on expiration time
   await updatePostStatus(post);
 
   // Prevent user from liking their own post
